@@ -1,0 +1,13 @@
+.activateButton {
+  height: 32px;
+  width: 32px;
+  outline: none;
+  margin: 5px;
+  border: none;
+  border-radius: 2px;
+  background: url(images/wow32.png) no-repeat;
+}
+
+.activateLabel {
+  text-align: center;
+}

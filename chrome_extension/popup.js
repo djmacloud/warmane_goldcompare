@@ -1,30 +1,23 @@
-// Initialize butotn with users's prefered color
-let changeColor = document.getElementById("changeColor");
+// Set the variables needed
+// chrome.storage.sync.get("coinperkgold", ({ coinperkgold }) => { });
+// chrome.storage.sync.get("columnoldtitle", ({ columnoldtitle }) => { });
+// chrome.storage.sync.get("columnnewtitle", ({ columnnewtitle }) => { });
 
-chrome.storage.sync.get("color", ({ color }) => {
-  changeColor.style.backgroundColor = color;
-});
 
-// When the button is clicked, inject setPageBackgroundColor into current page
-changeColor.addEventListener("click", async () => {
+// When the button is clicked, change the column title and data into current page
+activateBtn.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    function: setPageBackgroundColor,
+    function: changeMode,
   });
 });
 
-// The body of this function will be execuetd as a content script inside the
-// current page
-function setPageBackgroundColor() {
-  chrome.storage.sync.get("color", ({ color }) => {
-    document.body.style.backgroundColor = color;
-  });
-}
+// The body of this function will be execuetd as a content script inside the current page
 
-/*function setNewGoldTable() {
-  chrome.storage.sync.get("color", ({ color }) => {
-    document.body.style.backgroundColor = color;
-  });
-}*/
+function changeMode() {
+  let columntochange = document.querySelector('[aria-label="Faction: activate to sort column ascending"]');
+  columntochange.ariaLabel = "Coin per 1k gold: activate to sort column ascending";
+  columntochange.innerHTML = "Coin per 1k gold";
+}

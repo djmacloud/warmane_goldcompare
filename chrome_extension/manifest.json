@@ -21,6 +21,6 @@
     "32": "/images/wow32.png",
     "48": "/images/wow48.png",
     "128": "/images/wow128.png"
-  }
-  // "options_page": "options.html"
+  },
+  "options_page": "options.html"
 }
